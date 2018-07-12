@@ -1,0 +1,347 @@
+<html lang="en"><head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+
+	<!-- Bootstrap CSS -->
+
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" type="text/css" href="index.css">
+	<title>IMDB-Movie Search</title>
+
+</head>
+<body style="background-color: #ffc107e0!important;">
+	<div class="jumbotron bg-primary" style="background-color: #17a2b8eb!important;">
+		<h1 class="display-4" style="color: #1b1e21;">IMDB-Movie Search</h1>
+		<p class="lead" style="color: yellow">Silverscreen - A Theme for Movies, Filmmakers, and Production Companies.</p>
+	</div>
+	<div class="container-fluid" style="margin-top: -6rem;background-color: #e9ecef">
+		<h3 style="text-align: center;color: navy">Search Movies By</h3>
+		<ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
+			<li class="nav-item">
+				<a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="false">Title</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link active show" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="true">Title &amp; Year</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Id</a>
+			</li>
+		</ul>
+
+	</div>
+	<div class="container tab-content" id="pills-tabContent">
+		<div class="tab-pane fade" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+			<div class="input-group mb-3">
+				<input type="text" class="form-control" placeholder="Title" aria-label="Title" aria-describedby="basic-addon2" id="title1">
+				<div class="input-group-append">
+					<button class="btn btn-outline-secondary" type="button" id="search1">Search</button>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane fade active show" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+			<div class="input-group mb-3">
+				<input type="text" class="form-control" placeholder="Title" aria-label="Title" aria-describedby="basic-addon2" id="title2">
+				<input type="text" class="form-control" placeholder="Year" aria-label="Year" aria-describedby="basic-addon2" id="year">
+				<div class="input-group-append">
+					<button class="btn btn-outline-secondary" type="button" id="search2">Search</button>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+			<div class="input-group mb-3">
+				<input type="text" class="form-control" placeholder="Id" aria-label="Id" aria-describedby="basic-addon2" id="id">
+				<div class="input-group-append">
+					<button class="btn btn-outline-secondary" type="button" id="search3">Search</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<center><div class="loader"></div></center>
+	<div class="container-fluid colorWhite" id="container1">
+		<div class="d-flex flex-row mb-2 -flex justify-content-between">
+			<div class="p-2" style="margin-top: 2rem;margin-left: 2rem;" id="movieName">
+				
+
+
+			</div>
+			<div class="p-2" style="margin-top: 2rem;margin-right: 2rem;">
+				<i class="fa fa-star-half-full fontSize" style="margin-left: 1.5rem;"></i>
+				<h4 style="border: 1px solid white;padding: 0.5rem;" id="rated"></h4>
+			</div>
+
+		</div>
+
+
+
+<div class="toggler">
+  <div id="effect" class="ui-widget-content ui-corner-all">
+    <h3 class="ui-widget-header ui-corner-all">Show</h3>
+    <p>
+      Etiam libero neque, luctus a, eleifend nec, semper at, lorem. Sed pede. Nulla lorem metus, adipiscing ut, luctus sed, hendrerit vitae, mi.
+    </p>
+  </div>
+</div>
+
+		<div class="row">
+			<div class="col-0" style="margin-left: 3.5rem;">
+				<i class="fa fa-calendar fontSize"></i>
+			</div>
+			<div class="col-2">
+				<h5 id="date"></h5>
+			</div>
+			<div class="col-1" style="border-left:1px solid white;height:1rem;"></div>
+			<div class="col-0">
+				<i class="fa fa-language fontSize"></i>
+			</div>
+			<div class="col">
+				<h5 id="language"></h5>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-0" style="margin-left: 3.5rem;">
+				<i class="fa fa-clock-o fontSize"></i>
+			</div>
+			<div class="col-2">
+				<h5 id="time"></h5>
+			</div>
+			<div class="col-1" style="border-left:1px solid white;height:1rem;"></div>
+
+			<div class="col-0">
+				<i class="fa fa-film fontSize"></i>
+			</div>
+			<div class="col">
+				<h5 id="type"></h5>
+			</div>
+		</div>
+
+		<hr>
+
+		<div class="row">
+			<div class="col-md-2 col-sm-3 col-3 marginLeft">
+				<h5 id="rating0"></h5>
+			</div>
+			<div style="border-left:1px solid white;height:1rem;" class="line1"></div>
+			<div class="col-md-2 col-sm-3 col-3 marginLeft">
+				<h5 id="rating1"></h5>
+			</div>
+			<div style="border-left:1px solid white;height:1rem;" class="line2"></div>
+			<div class="col-md-2 col-sm-3 col-3 marginLeft">
+				<h5 id="rating2"></h5>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-2 col-sm-3 col-3 marginLeft">
+				<h5 id="source0"></h5>
+			</div>
+			<div style="border-left:1px solid white;height:1rem;" class="line1"></div>
+			<div class="col-md-2 col-sm-3 col-3 marginLeft">
+				<h5 id="source1"></h5>
+			</div>
+			<div style="border-left:1px solid white;height:1rem;" class="line2"></div>
+			<div class="col-md-2 col-sm-3 col-3 marginLeft">
+				<h5 id="source2"></h5>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid" id="containerM">
+		<center>
+			<div id="pCon"></div>
+			
+		</center>
+	</div>
+
+	<div class="container-fluid colorWhite" id="container2">
+		<div class="row">
+			<div class="col-md-8 col-sm-12">
+				<ul class="nav nav-tabs" id="myTab" role="tablist">
+					<li class="nav-item">
+						<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Casting Details</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">IMDB Ratings</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Info</a>
+					</li>
+				</ul>
+				<div class="tab-content" id="myTabContent">
+					<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+						<div class="row">
+							<div class="col-2" style="margin-top: 0.5rem;">
+								<h5>Plot:</h5>
+							</div>
+							<div class="col" style="margin-top: 0.5rem;">
+								<p id="plot"></p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-2">
+								<h5>Actors:</h5>
+							</div>
+							<div class="col">
+								<p id="actors"></p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-2">
+								<h5>Director:</h5>
+							</div>
+							<div class="col">
+								<p id="director"></p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-2">
+								<h5>Writer:</h5>
+							</div>
+							<div class="col">
+								<p id="writer"></p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-2">
+								<h5>Year:</h5>
+							</div>
+							<div class="col">
+								<p id="year1"></p>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+						<div class="row">
+							<div class="col-3" style="margin-top: 0.5rem;">
+								<h5>IMDB Id:</h5>
+							</div>
+							<div class="col" style="margin-top: 0.5rem;">
+								<p id="imdbId"></p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-3">
+								<h5>IMDB Rating:</h5>
+							</div>
+							<div class="col">
+								<p id="imdbRating"></p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-3">
+								<h5>IMDB Votes:</h5>
+							</div>
+							<div class="col">
+								<p id="imdbVotes"></p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-3">
+								<h5>MetaScore:</h5>
+							</div>
+							<div class="col">
+								<p id="metascore"></p>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+						<div class="row">
+							<div class="col-3" style="margin-top: 0.5rem;">
+								<h5>Country:</h5>
+							</div>
+							<div class="col" style="margin-top: 0.5rem;">
+								<p id="country"></p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-3">
+								<h5>Awards:</h5>
+							</div>
+							<div class="col">
+								<p id="awards"></p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-3">
+								<h5 id="totalSeasons"></h5>
+							</div>
+							<div class="col">
+								<p id="dvd"></p>
+							</div>
+						</div>
+						<div class="row ifSeason">
+							<div class="col-3">
+								<h5>Box-Office:</h5>
+							</div>
+							<div class="col">
+								<p id="boxOffice"></p>
+							</div>
+						</div>
+						<div class="row ifSeason">
+							<div class="col-3">
+								<h5>Production:</h5>
+							</div>
+							<div class="col">
+								<p id="production"></p>
+							</div>
+						</div>
+						<div class="row ifSeason">
+							<div class="col-3">
+								<h5>Website:</h5>
+							</div>
+							<div class="col" id="website">
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 posterClass" id="poster">
+				
+			</div>
+		</div>
+	</div>
+
+	<!-- <div class="container" id="searchNotFound"> -->
+		<center><img class="img-fluid" src="search-bar.gif" id="searchNotFound"></center>
+		<!-- </div> -->
+		<div class="container-fluid icon-group" style="background-color: gray">
+			<br><br>
+			<center>
+				
+				<p style="font-size: 1rem;color: white;">© reserved by Abhishek Palwankar</p><br>
+			</center>
+			
+		</div>
+
+
+
+		
+
+
+
+
+
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+		<script type="text/javascript" src="indexJS.js"></script>
+	
+	</body></html>
